@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حساب مخمسات</title>
+  <style>
+    body {
+      background-color: #f3f4f6;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0; 
+    }
+    a {
+        background-color:gray;
+        text-decoration:none;
+        border-radius:8px;
+        padding:4px;
+    }
+    .container {
+      max-width: 95%;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .card {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .header {
+      background-color: #2563eb;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    form {
+      padding: 1.5rem;
+    }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .grid-2 {
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    label {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: green;
+    }
+    
+    .input-field {
+      width: 90%;
+      padding: 0.5rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      transition: all 0.3s ease;
+    }
+    .input-field:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    }
+    .button {
+    font-size:17px;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .button-primary {
+      background-color: #2563eb;
+      color: white;
+      margin-top:8px;
+      
+    }
+    .button-primary:hover {
+      background-color: #1e40af;
+    }
+    .button-secondary {
+      background-color: #d1d5db;
+      color: red;
+    }
+    .button-secondary:hover {
+      background-color: #9ca3af;
+    }
+    .button-purple {
+      background-color: #7c3aed;
+      color: white;
+    }
+    .button-purple:hover {
+      background-color: #5b21b6;
+    }
+    .results {
+      margin-top: 2rem;
+      display: none;
+    }
+    .result-box {
+      background-color: #f9fafb;
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      animation: fadeIn 0.5s ease;
+    }
+    .result-section {
+      display: grid;
+      gap: 1rem;
+      border-bottom: 4px solid green;
+      border-radius:6px;
+      
+    }
+    @media (min-width: 768px) {
+      .result-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .s {
+        margin-top:5px;  
+    }
+    .x {
+        margin-bottom:2px;
+        color:blue;
+    }
+    .result-blue {
+      background-color: #eff6ff;
+      padding: 10px;
+      border-radius: 0.375rem;
+      border-bottom: 4px solid green;
+      border-radius:6px;
+    }
+    .result-green {
+      background-color: #ecfdf5;
+      padding: 0.75rem;
+      border-radius: 0.375rem;
+    }
+    .footer {
+      background-color: #f3f4f6;
+      padding: 0.75rem 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    .icon {
+      display: inline-block;
+      text-align: center;
+      margin-left: 0.5rem;
+    }
+    .icon-north::after {
+      content: "↑";
+    }
+    .icon-south::after {
+      content: "↓";
+    }
+    .icon-east::after {
+      content: "→";
+    }
+    .icon-west::after {
+      content: "←";
+    }
+    .icon-calculate::after {
+      content: "=";
+    }
+    .icon-reset::after {
+      content: "↺";
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">حساب مخمسات</div>
+      <div class="form">
+        <form id="landForm" class="space-y-6">
+          <div class="grid grid-2">
+            <div>
+              <label for="north"><span class="icon icon-north"></span>الشمال</label>
+              <input type="number" id="north" class="input-field" placeholder="عدد الحبال اتجاه الشمال" step="0.01" min="0" required />
+            </div>
+            <div>
+              <label for="south"><span class="icon icon-south"></span>الجنوب</label>
+              <input type="number" id="south" class="input-field" placeholder=" عدد الحبال اتجاه الجنوب" step="0.01" min="0" required />
+            </div>
+            <div>
+              <label for="east"><span class="icon icon-east"></span>الشرق</label>
+              <input type="number" id="east" class="input-field" placeholder="عدد الحبال اتجاه الشرق" step="0.01" min="0" required />
+            </div>
+            <div>
+              <label for="west"><span class="icon icon-west"></span>الغرب</label>
+              <input type="number" id="west" class="input-field" placeholder="عدد الحبال اتجاه الغرب" step="0.01" min="0" required />
+            </div>
+          </div>
+          <br/>
+          <div class="s">
+            <label for="price" class="x">💵 سعر المخمس</label>
+            <input type="number" id="price" class="input-field s" placeholder="💸 أدخل السعر" step="0.01" min="0" required />
+          </div>
+          <div class="grid grid-2">
+            <button type="submit" class="button button-primary">النتيجه
+            </button>
+            <button type="reset" id="resetBtn" class="button button-secondary">إعادة الحساب<span class="icon icon-reset"></span> 
+            </button>
+          </div>
+        </form>
+        <div id="results" class="results" style="border: 2px solid green; border-radius:8px; ">
+          <div class="result-box">
+            <h2 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: #1f2937; ">نتيجة الحساب</h2>
+            <div class="result-section">
+              <div class="result-blue">
+             
+                <p id="areaResult" style="font-size:17px; font-weight:bold; color:#1d4ed8;">0.00 </p>
+                  <p style="font-size: 17px; color:green;">مخمس</p> 
+                
+              </div>
+              <div class="result-green">
+                <p style="font-size: 0.875rem; color: #6b7280;">القيمة الإجمالية</p>
+                <p id="priceResult" style="font-size: 1.25rem; font-weight: bold; color: #047857;">0.00 جنيه</p>
+              </div>
+            </div>
+            <div style="margin-top: 1rem;">
+              <label for="comment">تعليق</label>
+              <textarea id="comment" rows="2" class="input-field" style="margin-top: 0.25rem;"></textarea>
+            
+                
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+         نأمل في تطوير التطبيق في القريب العاجل بإذن الله تعالى، نستقبل جميع الاقتراحات او التعديلات بخصوص تطوير التطبيق | راسلنا عبر البريد  <a href="mailto:majroorbehir@gmail.com" target="_blank" title="مراسلتنا عبر البريد">من هنا 📩</a> 
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('landForm');
+      const results = document.getElementById('results');
+      const resetBtn = document.getElementById('resetBtn');
+      const comment = document.getElementById('comment');
+      const screenshotBtn = document.getElementById('screenshotBtn');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const north = parseFloat(document.getElementById('north').value) || 0;
+        const south = parseFloat(document.getElementById('south').value) || 0;
+        const east = parseFloat(document.getElementById('east').value) || 0;
+        const west = parseFloat(document.getElementById('west').value) || 0;
+        const pricePerMokhmas = parseFloat(document.getElementById('price').value) || 0;
+
+        const totalNS = north + south;
+        const totalEW = east + west;
+
+        const areaInHabl = totalNS * totalEW;
+        const areaInMokhmas = areaInHabl / 600;
+        const totalPrice = areaInMokhmas * pricePerMokhmas;
+
+        document.getElementById('areaResult').textContent = areaInMokhmas.toFixed(2);
+        document.getElementById('priceResult').textContent = totalPrice.toFixed(2) + 'جنيه';
+
+        results.style.display = 'block';
+        results.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      resetBtn.addEventListener('click', function () {
+        results.style.display = 'none';
+        screenshotBtn.style.display = 'none';
+      });
+
+      comment.addEventListener('input', function () {
+        if (comment.value.trim() !== '') {
+          screenshotBtn.style.display = 'flex';
+        } else {
+          screenshotBtn.style.display = 'none';
+        }
+      });
+
+      screenshotBtn.addEventListener('click', function () {
+        
+      });
+    });
+  </script>
+</body>
+</html>
