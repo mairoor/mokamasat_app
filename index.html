@@ -279,8 +279,8 @@
         const areaInMokhmas = areaInHabl / 600;
         const totalPrice = areaInMokhmas * pricePerMokhmas;
 
-        document.getElementById('areaResult').textContent = areaInMokhmas.toFixed(2);
-        document.getElementById('priceResult').textContent = totalPrice.toFixed(2) + 'جنيه';
+        document.getElementById('areaResult').textContent = areaInMokhmas.toFixed(1);
+        document.getElementById('priceResult').textContent = totalPrice.toFixed(1) + 'جنيه';
 
         results.style.display = 'block';
         results.scrollIntoView({ behavior: 'smooth' });
